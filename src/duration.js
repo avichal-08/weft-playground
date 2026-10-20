@@ -2,7 +2,7 @@ const UNITS = { ms: 1, s: 1000, m: 60_000, h: 3_600_000, d: 86_400_000 };
 
 export function parseDuration(text) {
   const input = String(text).trim();
-  const part = /\s*(\d+(?:\.\d+)?)\s*(ms|s|m|h|d)/y;
+  const part = /\s*(\d+(?:\.\d+)?)\s*(m|ms|s|h|d)/y;
   let total = 0;
   let parts = 0;
 
