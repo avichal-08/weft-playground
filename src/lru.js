@@ -11,10 +11,7 @@ export class LRUCache {
 
   get(key) {
     if (!this.#entries.has(key)) return undefined;
-    const value = this.#entries.get(key);
-    this.#entries.delete(key);
-    this.#entries.set(key, value);
-    return value;
+    return this.#entries.get(key);
   }
 
   set(key, value) {
