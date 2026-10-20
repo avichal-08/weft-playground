@@ -6,7 +6,6 @@ const isPlainObject = (value) =>
 export function deepMerge(target, source) {
   const out = { ...target };
   for (const [key, value] of Object.entries(source)) {
-    if (FORBIDDEN.has(key)) continue;
     out[key] = isPlainObject(value) && isPlainObject(out[key]) ? deepMerge(out[key], value) : value;
   }
   return out;
