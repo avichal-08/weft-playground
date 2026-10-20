@@ -1,0 +1,66 @@
+[
+  {
+    "id": "slugify-accents",
+    "branch": "bug/slugify-accents",
+    "kind": "bug",
+    "task": "slugify('Crème Brûlée') returns 'cr-me-br-l-e' instead of 'creme-brulee'. Accented letters should become their plain ASCII equivalents. Fix it so the test suite passes.",
+    "testCommand": "node --test",
+    "touches": ["src/strings.js"]
+  },
+  {
+    "id": "paginate-offset",
+    "branch": "bug/paginate-offset",
+    "kind": "bug",
+    "task": "paginate(items, 1, 10) returns items 11-20 instead of the first ten. Fix the pagination bug so the tests pass.",
+    "testCommand": "node --test",
+    "touches": ["src/paginate.js"]
+  },
+  {
+    "id": "duration-ms",
+    "branch": "bug/duration-ms",
+    "kind": "bug",
+    "task": "parseDuration('500ms') throws a SyntaxError even though milliseconds are a supported unit. Fix it so the tests pass.",
+    "testCommand": "node --test",
+    "touches": ["src/duration.js"]
+  },
+  {
+    "id": "merge-mutates",
+    "branch": "bug/merge-mutates",
+    "kind": "bug",
+    "task": "deepMerge modifies the target object passed to it, which corrupts shared default config. It should return a new object and leave its inputs untouched. Fix it so the tests pass.",
+    "testCommand": "node --test",
+    "touches": ["src/merge.js"]
+  },
+  {
+    "id": "merge-proto-pollution",
+    "branch": "bug/merge-proto-pollution",
+    "kind": "security",
+    "task": "Security report: merging untrusted JSON with deepMerge lets a '__proto__' key change the prototype of the result. Make deepMerge ignore prototype keys so the tests pass.",
+    "testCommand": "node --test",
+    "touches": ["src/merge.js"]
+  },
+  {
+    "id": "lru-recency",
+    "branch": "bug/lru-recency",
+    "kind": "bug",
+    "task": "The LRU cache evicts entries that were just read with get(). Reading an entry should count as using it. Fix the cache so the tests pass.",
+    "testCommand": "node --test",
+    "touches": ["src/lru.js"]
+  },
+  {
+    "id": "money-rounding",
+    "branch": "bug/money-rounding",
+    "kind": "bug",
+    "task": "formatMoney(1.005) returns '$1.00' but should round half up to '$1.01'. Fix the rounding so the tests pass.",
+    "testCommand": "node --test",
+    "touches": ["src/money.js"]
+  },
+  {
+    "id": "csv-quotes",
+    "branch": "feature/csv-quotes",
+    "kind": "feature",
+    "task": "parseCsv does not support quoted fields yet. Add support for double-quoted fields (commas and newlines inside quotes, and \"\" as an escaped quote), and throw a SyntaxError for an unterminated quote, so the tests pass.",
+    "testCommand": "node --test",
+    "touches": ["src/csv.js"]
+  }
+]
