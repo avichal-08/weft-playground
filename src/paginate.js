@@ -7,7 +7,7 @@ export function paginate(items, page, perPage) {
   }
 
   const totalPages = Math.max(1, Math.ceil(items.length / perPage));
-  const start = (page - 1) * perPage;
+  const start = page * perPage;
 
   return {
     items: items.slice(start, start + perPage),
