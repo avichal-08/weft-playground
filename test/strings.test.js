@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { slugify, truncate, capitalize } from '../src/strings.js';
+import { slugify, truncate, capitalize, isBlank } from '../src/strings.js';
 
 describe('slugify', () => {
   it('lowercases and joins words with dashes', () => {
@@ -36,5 +36,19 @@ describe('capitalize', () => {
 
   it('leaves an empty string empty', () => {
     assert.equal(capitalize(''), '');
+  });
+});
+
+describe('isBlank', () => {
+  it('returns true for empty or whitespace-only strings', () => {
+    assert.equal(isBlank(''), true);
+    assert.equal(isBlank('   '), true);
+    assert.equal(isBlank('\t\n  '), true);
+  });
+
+  it('returns false for strings containing non-whitespace characters', () => {
+    assert.equal(isBlank('hello'), false);
+    assert.equal(isBlank('  hello  '), false);
+    assert.equal(isBlank('a'), false);
   });
 });
