@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { slugify, truncate } from '../src/strings.js';
+import { slugify, truncate, capitalize } from '../src/strings.js';
 
 describe('slugify', () => {
   it('lowercases and joins words with dashes', () => {
@@ -25,5 +25,16 @@ describe('truncate', () => {
   it('cuts long text and adds a suffix within the limit', () => {
     assert.equal(truncate('The quick brown fox', 10), 'The quick…');
     assert.equal(truncate('abcdefghij', 5, '...'), 'ab...');
+  });
+});
+
+describe('capitalize', () => {
+  it('upper-cases the first character and leaves the rest unchanged', () => {
+    assert.equal(capitalize('hello'), 'Hello');
+    assert.equal(capitalize('world Cup'), 'World Cup');
+  });
+
+  it('leaves an empty string empty', () => {
+    assert.equal(capitalize(''), '');
   });
 });
