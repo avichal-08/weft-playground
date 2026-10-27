@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { paginate } from '../src/paginate.js';
+import { paginate, chunk } from '../src/paginate.js';
 
 const items = Array.from({ length: 23 }, (_, i) => i + 1);
 
@@ -38,5 +38,27 @@ describe('paginate', () => {
     assert.throws(() => paginate(items, 0, 10), RangeError);
     assert.throws(() => paginate(items, 1, 0), RangeError);
     assert.throws(() => paginate(items, 1.5, 10), RangeError);
+  });
+});
+
+describe('chunk', () => {
+  it('splits an array into chunks of the given size', () => {
+    assert.deepEqual(chunk([1, 2, 3, 4, 5], 2), [[1, 2], [3, 4], [5]]);
+    assert.deepEqual(chunk([1, 2, 3, 4], 2), [[1, 2], [3, 4]]);
+  });
+
+  it('handles an empty array by returning []', () => {
+    assert.deepEqual(chunk([], 3), []);
+  });
+
+  it('handles size larger than array length', () => {
+    assert.deepEqual(chunk([1, 2], 5), [[1, 2]]);
+  });
+
+  it('rejects non-positive or non-integer sizes', () => {
+    assert.throws(() => chunk([1, 2, 3], 0), RangeError);
+    assert.throws(() => chunk([1, 2, 3], -1), RangeError);
+    assert.throws(() => chunk([1, 2, 3], 1.5), RangeError);
+    assert.throws(() => chunk([1, 2, 3], '2'), RangeError);
   });
 });
