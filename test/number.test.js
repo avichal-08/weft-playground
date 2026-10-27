@@ -9,6 +9,10 @@ describe('clamp', () => {
     assert.equal(clamp(15, 1, 10), 10);
   });
 
+  it('returns 5 when clamp(5, 5, 5) is called', () => {
+    assert.equal(clamp(5, 5, 5), 5);
+  });
+
   it('works with equal min and max', () => {
     assert.equal(clamp(5, 5, 5), 5);
     assert.equal(clamp(2, 5, 5), 5);
